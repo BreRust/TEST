@@ -1,0 +1,8 @@
+#!/bin/bash
+keyword="ключевое_слово"
+files=$(grep -IrL "$keyword" .)
+if [ -n "$files" ]; then
+    echo "$files"
+else
+    echo "Не найдено"
+fi
