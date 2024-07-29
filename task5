@@ -1,0 +1,10 @@
+#!/bin/bash
+filename="test.txt"
+if [ ! -f "$filename" ]; then
+    echo "Файл $filename не найден."
+    exit 1
+fi
+while IFS= read -r line
+do
+    echo "$line" | rev
+done < "$filename"
