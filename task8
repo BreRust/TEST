@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ "$#" -ne 3 ]; then
+    echo "Использование: $0 количество_паролей длина_пароля имя_файла"
+    exit 1
+fi
+
+num_passwords=$1
+password_length=$2
+output_file=$3
+
+if ! [[ "$num_passwords" =~ ^[0-9]+$ ]] || ! [[ "$password_length" =~ ^[0-9]+$ ]] || [ "$num_passwords" -le 0 ] || [ "$password_length" -le 0 ]; then
+    echo "Ошибка: количество паролей и длина пароля должны быть положительными целыми числами."
+    exit 1
+fi
+for ((i = 1; i <= num_passwords; i++)); do
+    password=$(tr -dc 'A-Za-z0-9_!@#$%^&*()' </dev/urandom | head -c "$password_length")
+    echo "$password" >> "$output_file"
+done
+echo "Пароли сохранены в $output_file"
