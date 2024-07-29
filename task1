@@ -1,0 +1,4 @@
+mkdir MyDirectory
+cd MyDirectory
+touch MyFile.txt
+ls MyDirectory
