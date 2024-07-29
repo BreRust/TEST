@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Проверка наличия обновлений..."
+UPDATES=$(yum check-update -q)
+if [ "$UPDATES" ]; then
+    echo "Доступны обновления. Установка обновлений..."
+    sudo yum update -y
+    echo "Обновления установлены."
+else
+    echo "Обновлений не найдено."
+fi
